@@ -1,0 +1,17 @@
+.url {
+    background-color: rgb(195, 195, 3);
+    display: block;
+    margin-top: 10px;
+    border-radius: 4px;
+    border: 2px solid #7c7a01; 
+}
+
+.url:hover {
+    background-color: #c1bf55;
+    border-color: #504f03;
+    outline: none;
+}
+
+input:focus {
+    outline: none;
+}

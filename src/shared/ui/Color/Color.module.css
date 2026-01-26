@@ -1,0 +1,16 @@
+.color {
+    background-color: rgb(198, 209, 167);
+    display: block;
+    margin-top: 10px;
+    border: 2px solid #505a50; 
+    border-radius: 4px;
+}
+
+.color:hover {
+    background-color: rgb(146, 182, 40);
+}
+
+.color:focus {
+    border-color: #2f6b3f;
+    transform: scale(1.03);
+}

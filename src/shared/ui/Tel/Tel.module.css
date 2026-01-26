@@ -1,0 +1,13 @@
+.tel {
+    background-color: rgba(0, 212, 191, 0.379);
+    display: block;
+    margin-top: 10px;
+    border-radius: 4px;
+    border: 2px solid #004b23; 
+}
+
+.tel:focus {
+  border-color: #22c55e;
+  transform: translateY(-1px); 
+  outline: none;
+}

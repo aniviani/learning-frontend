@@ -1,0 +1,18 @@
+.datetime {
+    background-color: rgb(186, 199, 211);
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 2px solid #2e1f68; 
+}
+
+.datetime:hover {
+    background-color: rgb(174, 219, 255);
+    outline: none;
+}
+
+.datetime:focus {
+    background-color: rgb(202, 229, 249);
+    outline: none;
+}

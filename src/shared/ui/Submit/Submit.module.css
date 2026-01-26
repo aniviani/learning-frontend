@@ -1,0 +1,11 @@
+.submit {
+    background-color: rgb(255, 190, 179);
+    display: block;
+    margin-top: 10px;
+    border-radius: 4px;
+    border: 2px solid #9b261a; 
+}
+
+.submit:active {
+    transform: scale(0.95);
+}
