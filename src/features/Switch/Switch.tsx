@@ -1,7 +1,7 @@
-import { useState, type FC } from "react"
+import { useState } from "react"
 
-export const Switch: FC = () => {
-    const [isOn, setIsOn] = useState(true)
+export const Switch = () => {
+    const [isOn, setIsOn] = useState<boolean>(true)
     
     const sw = () => {
         setIsOn(!isOn)

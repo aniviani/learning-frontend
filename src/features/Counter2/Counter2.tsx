@@ -7,7 +7,7 @@ interface IProps {
 
 export const Counter2: FC <IProps> = ({step, initialValue}) => {
 
-    const [value, setValue] = useState(initialValue)
+    const [value, setValue] = useState<number>(initialValue)
 
     const increment = () => {
         setValue((previousValue) => {

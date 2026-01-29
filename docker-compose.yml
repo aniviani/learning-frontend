@@ -1,0 +1,16 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    environment:
+      # На macOS/windows иногда без polling не ловит изменения файлов
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+    volumes:
+      # Монтируем проект внутрь контейнера для live reload
+      - .:/app
+      # Отдельный volume для node_modules, чтобы не перетирался монтированием
+      - /app/node_modules

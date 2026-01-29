@@ -7,7 +7,7 @@ interface IProps {
 }
 
 export const MaxMin: FC<IProps> = ({ step, minValue, maxValue }) => {
-    const [value, setValue] = useState(minValue)
+    const [value, setValue] = useState<number>(minValue)
     
     const increment = () => {
         if (value + step <= maxValue) {
@@ -26,13 +26,18 @@ export const MaxMin: FC<IProps> = ({ step, minValue, maxValue }) => {
         
     }
 
+    const reset = () => {
+        setValue(minValue)
+    }
+
     return (
     <>
-        <div>Задание 1</div>
+        <div>Задание 1 и 5</div>
         <div>Counter: {value}</div>
         <div>Step: {step}</div>
         <button onClick={increment}>+</button>
         <button onClick={decrement}>-</button>
+        <button onClick={reset}>сброс</button>
     </>
     )
 }

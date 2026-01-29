@@ -6,7 +6,7 @@ interface IProps {
 
 export const Counter: FC<IProps> = ({step}) => {
 
-    const [counter, setCounter] = useState(0)
+    const [counter, setCounter] = useState<number>(0)
 
     const increment1 = () => {
         setCounter(counter + step) 
