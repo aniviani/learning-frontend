@@ -1,10 +1,10 @@
-import { Func } from "./features/Func/Func"
+import { Form } from "./features/Form/Form"
 
 export const App = () => {
 
   return (
   <>
-  <Func/>
+  <Form/>
   </>
   )
 }
