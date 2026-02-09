@@ -1,22 +1,21 @@
-import { useState } from "react";
 import { Task } from "../Task/Task";
-import { tasks } from "./tasks";
-
+import { useTasksManager } from './useTasksManager'
 
 export const ToDoList = () => {
-    const [state, setState] = useState()
+    const { searchValue, changeSearchValue, searchedTasks, deleteTask } = useTasksManager()
 
-        const doneTasks = tasks.filter((task) => task.done === true)
-        
         return (
         <div>
             <div>To Do List:</div>
+            <input type="text" placeholder="поиск" value={searchValue} onChange={changeSearchValue}/>
+            
             <div>
-                {doneTasks.map((task) => 
+                {searchedTasks.map((task) => 
                 <Task 
                 key={task.name} 
                 name={task.name} 
                 description={task.description}
+                onDelete={() => deleteTask(task.name)}
                 />)}
             </div>
         </div>

@@ -1,13 +1,10 @@
-import { Converter2 } from "./features/Converter2/Converter2"
-// import { ToDoList } from "./features/ToDoList/ToDoList"
-import { UsersList } from "./features/UsersList/UsersList"
-
+import { ToDoList } from "./features/ToDoList/ToDoList"
 
 export const App = () => {
 
   return (
   <>
-  <UsersList/>
+  <ToDoList/>
   </>
   )
 }

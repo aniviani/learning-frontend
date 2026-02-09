@@ -7,6 +7,7 @@ interface IProps {
     email: string;
     city: string;
     country: string;
+    onDelete: () => void; 
 }
 
 export const User: FC<IProps> = ({
@@ -16,10 +17,13 @@ export const User: FC<IProps> = ({
     email,
     city,
     country,
+    onDelete,
 }) => {
     return (
+
     <div>
         {name} {surname}, {age} лет — {email} ({city}, {country})
+        <button onClick={onDelete}>Удалить</button>
     </div>
 
     );

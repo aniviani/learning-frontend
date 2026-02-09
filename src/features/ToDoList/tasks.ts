@@ -1,4 +1,4 @@
-type TTasks = {
+export type TTasks = {
     name: string;
     description: string;
     done: boolean
@@ -13,4 +13,7 @@ export const tasks: TTasks[] = [
         done: true},
         {name: 'задача 3',
         description: 'описание 3',
-        done: false}]
+        done: false},
+        {name: 'задача 4',
+        description: 'описание 4',
+        done: true}]
