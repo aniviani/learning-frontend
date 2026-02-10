@@ -3,14 +3,15 @@ import { type FC } from "react";
 interface IProps {
     name: string;
     description: string
-    onDelete: () => void; 
+    onDelete: () => void;
+    onEdit: () => void;
 }
 
-export const Task: FC<IProps> = ({name, description, onDelete}) => {
+export const Task: FC<IProps> = ({name, description, onDelete, onEdit}) => {
 
 
 return (
-    <div>
+    <div onClick={onEdit}>
             <div>{name}</div> 
             <div>{description}</div>
             <button onClick={onDelete}>Удалить</button>

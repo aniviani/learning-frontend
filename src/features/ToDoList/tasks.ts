@@ -1,10 +1,10 @@
-export type TTasks = {
+export type TTask = {
     name: string;
     description: string;
     done: boolean
-} 
+}
 
-export const tasks: TTasks[] = [
+export const tasks: TTask[] = [
         {name: 'задача 1',
         description: 'описание 1',
         done: true},

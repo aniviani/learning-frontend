@@ -1,6 +1,6 @@
-import { type TTasks } from "../ToDoList/tasks"
+import { type TTask } from "./tasks.ts"
 
-export const getFilteredTasks = (searchValue: string, tasks: TTasks[]): TTasks[] => {
+export const getFilteredTasks = (searchValue: string, tasks: TTask[]): TTask[] => {
     const doneTasks = tasks.filter((task) => task.done === true)
     
     if (searchValue === '') {
