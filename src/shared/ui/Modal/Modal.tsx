@@ -12,6 +12,7 @@ export const Modal: FC<IModal> = ({close, children}) => {
             event.stopPropagation()
         }}>
             <button className="modal-close" onClick={close}>×</button>
+
             {children}
         </div>
     </div>)

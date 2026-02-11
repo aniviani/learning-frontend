@@ -8,15 +8,38 @@ import {EditTaskForm} from "./ui/EditTaskForm.tsx";
 export const ToDoList = () => {
     const { searchValue, changeSearchValue, searchedTasks, deleteTask } = useTasksManager()
     const [editableTask, setEditableTask] = useState<TTask | null>(null)
+    const [tasks, setTasks] = useState<TTask[]>(searchedTasks);
 
     const editTask = (task: TTask) => {
         setEditableTask(task);
     }
+    
+    const handleSave = (newName: string, newDescription: string) => {
+        if (editableTask === null) {
+            return;
+        }
+        
+        setTasks(tasks.map((task) => {
+            if (task.name === editableTask.name) {
+                task.name = newName;
+                task.description = newDescription;
+            }
+            return task;
+        })
+    );
+    
+    setEditableTask(null);
+};
 
         return (
         <div>
             <div>To Do List:</div>
-            <input type="text" placeholder="поиск" value={searchValue} onChange={changeSearchValue}/>
+            <input 
+                type="text" 
+                placeholder="поиск" 
+                value={searchValue} 
+                onChange={changeSearchValue}
+             />
             
             <div>
                 {searchedTasks.map((task) => 
@@ -28,7 +51,14 @@ export const ToDoList = () => {
                 onDelete={() => deleteTask(task.name)}
                 />)}
             </div>
-            {editableTask && <Modal close={() => setEditableTask(null)}><EditTaskForm name={editableTask.name} description={editableTask.description}/></Modal>}
+            {editableTask && 
+             (<Modal close={() => setEditableTask(null)}>
+                <EditTaskForm 
+                    name={editableTask.name} 
+                    description={editableTask.description} 
+                    onSave={handleSave}
+                />
+             </Modal>)}
         </div>
-                )
-            }
+        )
+    }

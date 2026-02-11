@@ -1,4 +1,5 @@
 import { type FC } from "react";
+import {Button} from '../../shared/ui/Button/Button'
 
 interface IProps {
     name: string;
@@ -14,7 +15,17 @@ return (
     <div onClick={onEdit}>
             <div>{name}</div> 
             <div>{description}</div>
-            <button onClick={onDelete}>Удалить</button>
+            <Button 
+                onClick={(event) => {
+
+                    console.log(event)
+                    event.stopPropagation();
+
+                    onDelete()
+                }}
+            >
+                Удалить
+            </Button>
     </div>
 )
 } 

@@ -1,20 +1,12 @@
 import styles from './Button.module.css'
+import { type FC, type ReactNode, type MouseEvent} from "react"
 
-export const Button = () => {
-const getPeople = async () => {
-    const response = await fetch('https://swapi.dev/api/people');
-    const data = await response.json();
-    
-    console.log({ data })
-
-
-//   try {
-//     const response = await axios.get('/user?ID=12345');
-//     console.log(response);
-//   } catch (error) {
-//     console.error(error);
-//   }
+interface IProps {
+    onClick: (event: MouseEvent<HTMLButtonElement>) => void;
+    children: ReactNode;
 }
 
-    return <button className={styles.button} onClick={getPeople}>Click</button>
+export const Button: FC<IProps> = ({onClick, children}) => {
+    return <button className={styles.button} onClick={onClick}>{children}</button>
 }
+
