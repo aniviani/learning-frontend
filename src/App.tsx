@@ -1,14 +1,10 @@
-import { ColorList } from "./features/ColorList/ColorList"
-import { NumberList } from "./features/NumberList/NumberList"
-import { ToDoList } from "./features/ToDoList/ToDoList"
+import { CitiesList } from "./features/CitiesList/CitiesList"
 
 export const App = () => {
 
   return (
   <>
-  <ToDoList/>
-  <ColorList/>
-  <NumberList/>
+  <CitiesList/>
   </>
   )
 }
