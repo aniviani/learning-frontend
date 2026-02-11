@@ -1,10 +1,9 @@
 import { useState } from "react"
-import { Button } from "../../shared/ui/Button/Button"
 import styles from "./CitiesList.module.css"
 import { sortCities } from "./sortCities"
 
 export const CitiesList = () => {
-    const cities = ['Тула', 'Москва', 'Астрахань', 'Санк-Петербург', 'Ясногорск', 'Уфа']
+    const cities = ['Тула', 'Москва', 'астрахань', 'Санк-Петербург', 'ясногорск', 'Уфа']
 
     const [sort, setSort] = useState< 'asc' | 'desc' >('asc')
     
@@ -15,12 +14,11 @@ return (
         {sortedCities.map((city) => (
             <div key={city} className={styles.item}>{city}</div>
         ))}
-        <Button onClick={ () => 
-        setSort('asc')
-        }>от А до Я</Button>
-        <Button onClick={ () => 
-            setSort('desc')
-        }>от Я до А</Button>
+        
+        <select value={sort} onChange={(event) => setSort(event.target.value as 'asc' | 'desc')}>
+            <option value='asc'>от А до Я</option>
+            <option value='desc'>от Я до А</option>
+        </select>
     </div>
 )
 }

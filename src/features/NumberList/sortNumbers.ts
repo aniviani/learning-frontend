@@ -5,7 +5,27 @@ interface IParams {
 
 export const sortNumbers = ({sort, numbers}: IParams): number[] => {
     if (sort === 'asc') {
-        return numbers;
+        return numbers.sort((previousElement, nextElement) => {
+            if(previousElement < nextElement) {
+                return -1
+            }
+
+            if(nextElement < previousElement) {
+                return 1
+            }
+
+            return 0
+        })
     }
-    return numbers.reverse()
+    
+    return numbers.sort((previousElement, nextElement) => {
+        if (previousElement < nextElement) {
+            return 1
+        }
+
+        if (nextElement < previousElement) {
+            return -1
+        }
+         return 0
+    })
 }

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import styles from './NumberList.module.css'
-import { Button } from '../../shared/ui/Button/Button';
 import { sortNumbers } from './sortNumbers';
 import { numbers } from './numbers';
 
@@ -15,12 +14,11 @@ return (
         {sortedNumbers.map((number) => (
             <div key={number} className={styles.number}>{number}</div>
         ))}
-        <Button onClick={() => {
-            setSort('asc')
-        }}>по возрастанию</Button>
-        <Button onClick={() => {
-            setSort('desc')
-        }}>по убыванию</Button>
+
+        <select value={sort} onChange={(event) => setSort(event.target.value as 'asc' | 'desc')} name="select">
+            <option value="asc">по возрастанию</option>
+            <option value="desc">по убыванию</option>
+        </select>
     </div>
 )
 }
