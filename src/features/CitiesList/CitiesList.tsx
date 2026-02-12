@@ -7,18 +7,25 @@ export const CitiesList = () => {
 
     const [sort, setSort] = useState< 'asc' | 'desc' >('asc')
     
-    const sortedCities = sortCities({sort, cities: [...cities]});
+    const sortedCities = sortCities({sort, cities});
 
 return (
-    <div className={styles.container}>
+    <div>
+         <select value={sort} onChange={(event) => setSort(event.target.value as 'asc' | 'desc')}>
+            <option value='asc'>от А до Я</option>
+            <option value='desc'>от Я до А</option>
+        </select>
+
+            <div className={styles.container}>
+
+        
+
         {sortedCities.map((city) => (
             <div key={city} className={styles.item}>{city}</div>
         ))}
         
-        <select value={sort} onChange={(event) => setSort(event.target.value as 'asc' | 'desc')}>
-            <option value='asc'>от А до Я</option>
-            <option value='desc'>от Я до А</option>
-        </select>
     </div>
+    </div>
+
 )
 }

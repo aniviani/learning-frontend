@@ -6,11 +6,11 @@ interface IParams {
 export const sortCities = ({sort, cities}: IParams ): string[] => {
 
         if (sort === 'asc') {
-            return cities.sort((previousElement, nextElement) => {
+            return cities.toSorted((previousElement, nextElement) => {
                 return previousElement.toLowerCase().localeCompare(nextElement.toLowerCase())
             })
         }
-        return cities.sort((previousElement, nextElement) => {
+        return cities.toSorted((previousElement, nextElement) => {
             return nextElement.toLowerCase().localeCompare(previousElement.toLowerCase())
         })
     }
