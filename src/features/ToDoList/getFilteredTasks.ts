@@ -7,6 +7,5 @@ export const getFilteredTasks = (searchValue: string, tasks: TTask[]): TTask[] =
         return doneTasks
     }
     
-    return doneTasks.filter((task) =>
-        task.name.includes(searchValue))
+    return doneTasks.filter((task) => task.name.includes(searchValue))
 }
