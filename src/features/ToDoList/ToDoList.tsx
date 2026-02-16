@@ -1,22 +1,20 @@
 import { Task } from "../Task/Task";
-import { useTasksManager } from './useTasksManager'
 import { useState } from "react";
 import { Modal } from "../../shared/ui/Modal/Modal.tsx";
 import type {TTask} from "./tasks.ts";
-import {EditTaskForm} from "./ui/EditTaskForm.tsx";
-import { sortTasks } from "./sortTasks.ts";
+import { EditTaskForm } from "./ui/EditTaskForm.tsx";
+import { SortType, useSortTasks } from "./sort/useSortTasks.ts";
+import { tasks as allTasks } from "../ToDoList/tasks";
+import { useSearchTasks } from "./search/useSearchTasks.ts";
+import { TaskStatus, useFilterTasks } from "./filter/useFilterTasks.ts";
 
 export const ToDoList = () => {
-    const { searchValue, changeSearchValue, searchedTasks, deleteTask } = useTasksManager()
-    const [editableTask, setEditableTask] = useState<TTask | null>(null)
-    const [tasks, setTasks] = useState<TTask[]>(searchedTasks);
-    const [ sort, setSort] = useState<'asc' | 'desc'>('asc')
-    const [ filter, setFilter] = useState< 'все задачи' | 'задача 1' | 'задача 2' | 'задача 3' | 'задача 4'>('все задачи')
-    const [openCreateTaskModal, setOpenCreateTaskModal] = useState<boolean>(false)
+    const [ tasks, setTasks ] = useState<TTask[]>(allTasks);
+    const { sort, sortedTasks, handleSortChange } = useSortTasks({tasks})
+    const { searchedTasks, searchValue, handleSearchChange } = useSearchTasks({tasks: sortedTasks})
+    const { filter, filteredTasks, handleFilterChange } = useFilterTasks({tasks: searchedTasks})
+    const [ editableTask, setEditableTask ] = useState<TTask | null>(null)
     
-    const sortedTasks = sortTasks({sort, tasks})
-    
-
     const editTask = (task: TTask) => {
         setEditableTask(task);
     }
@@ -45,30 +43,28 @@ export const ToDoList = () => {
                 type="text" 
                 placeholder="поиск" 
                 value={searchValue} 
-                onChange={changeSearchValue}
+                onChange={handleSearchChange}
              />
             
-            <select value={sort} onChange={(event) => setSort(event.target.value as 'asc' | 'desc')} name="select">
-                <option value="asc">от А до Я</option>
-                <option value="desc">от Я до А</option>
+            <select value={sort} onChange={handleSortChange} name="select">
+                <option value={SortType.ASC}>от А до Я</option>
+                <option value={SortType.DESC}>от Я до А</option>
             </select>
 
-             <select value={filter} onChange={(event) => setFilter(event.target.value as 'задача 1' | 'задача 2' | 'задача 3' | 'задача 4' | 'все задачи')} name="select">
-                <option value="все задачи">все задачи</option>
-                <option value="задача 1">задача 1</option>
-                <option value="задача 2">задача 2</option>
-                <option value="задача 3">задача 3</option>
-                <option value="задача 4">задача 4</option>
+             <select value={filter} onChange={handleFilterChange} name="select">
+                <option value={TaskStatus.ALL}>все задачи</option>
+                <option value={TaskStatus.DONE}>готовые</option>
+                <option value={TaskStatus.NOT_DONE}>не готовые</option>
             </select>
 
             <div>
-                {sortedTasks.map((task) => 
+                {filteredTasks.map((task) => 
                 <Task
                 onEdit={() => editTask(task)}
                 key={task.name} 
                 name={task.name} 
                 description={task.description}
-                onDelete={() => deleteTask(task.name)}
+                onDelete={() => {}}
                 />)}
             </div>
             {editableTask && 

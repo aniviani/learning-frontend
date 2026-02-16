@@ -1,11 +1,11 @@
-import type { TTask } from "./tasks";
+import type { TTask } from "../tasks";
 
 interface IParams {
     search: string;
     tasks: TTask[]
 }
 
-export const searchAddresses = ({search, tasks}: IParams): TTask[] => {
+export const searchTasks = ({search, tasks}: IParams): TTask[] => {
     if (search === ''){
         return tasks
     }
