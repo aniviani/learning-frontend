@@ -7,34 +7,17 @@ import { SortType, useSortTasks } from "./sort/useSortTasks.ts";
 import { tasks as allTasks } from "../ToDoList/tasks";
 import { useSearchTasks } from "./search/useSearchTasks.ts";
 import { TaskStatus, useFilterTasks } from "./filter/useFilterTasks.ts";
+import { useDeleteTask } from "./delete-task/useDeleteTask.ts";
+import { useEditTask } from "./edit-task/useEditTask.ts";
+
 
 export const ToDoList = () => {
     const [ tasks, setTasks ] = useState<TTask[]>(allTasks);
     const { sort, sortedTasks, handleSortChange } = useSortTasks({tasks})
     const { searchedTasks, searchValue, handleSearchChange } = useSearchTasks({tasks: sortedTasks})
     const { filter, filteredTasks, handleFilterChange } = useFilterTasks({tasks: searchedTasks})
-    const [ editableTask, setEditableTask ] = useState<TTask | null>(null)
-    
-    const editTask = (task: TTask) => {
-        setEditableTask(task);
-    }
-    
-    const handleSave = (newName: string, newDescription: string) => {
-        if (editableTask === null) {
-            return;
-        }
-        
-        setTasks(tasks.map((task) => {
-            if (task.name === editableTask.name) {
-                task.name = newName;
-                task.description = newDescription;
-            }
-            return task;
-        })
-    );
-    
-    setEditableTask(null);
-};
+    const { deleteTask } = useDeleteTask({setTasks})
+    const { editableTask, editTask, saveEditedTask, finishEditingTask } = useEditTask({setTasks})
 
         return (
         <div>
@@ -60,20 +43,20 @@ export const ToDoList = () => {
             <div>
                 {filteredTasks.map((task) => 
                 <Task
-                onEdit={() => editTask(task)}
-                key={task.name} 
+                onEdit={() => editTask({task})}
+                key={task.id} 
                 name={task.name} 
                 description={task.description}
-                onDelete={() => {}}
+                onDelete={() => deleteTask({id: task.id})}
                 />)}
             </div>
             {editableTask && 
-             (<Modal close={() => setEditableTask(null)}>
+             (<Modal close={finishEditingTask}>
                 <EditTaskForm 
                     name={editableTask.name} 
                     description={editableTask.description} 
-                    onSave={handleSave}
-                />
+                    onSave={(name, description) => saveEditedTask({newName: name, newDescription: description})}
+                />  
              </Modal>)}
         </div>
         )

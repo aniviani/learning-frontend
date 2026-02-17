@@ -17,8 +17,6 @@ return (
             <div>{description}</div>
             <Button 
                 onClick={(event) => {
-
-                    console.log(event)
                     event.stopPropagation();
 
                     onDelete()
