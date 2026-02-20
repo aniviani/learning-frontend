@@ -1,19 +1,17 @@
-import { useState, type ChangeEventHandler } from 'react'
-import styles from'./Input.module.css'
+import {  type ChangeEventHandler } from 'react'
 
-export const Input = () => {
+interface IProps {
+value: string;
+onChange: (newValue: string) => void;
+}
 
-    const [value, setValue] = useState('')
+export const Input = ({value, onChange }: IProps) => {
 
-    const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-        setValue(event.target.value)
-        
-        console.log(event.target.value)
+    const handleChange: ChangeEventHandler<HTMLInputElement> = ( event ) => {
+        onChange(event.target.value)
     }
+
     return (
-    <>
-        <input type="text" className={styles.input} value={value} onChange={handleChange}/>
-        <text>вы ввели: {value} </text>
-    </>
+        <input type="text" value={value} onChange={ handleChange }/>
     )
 }
