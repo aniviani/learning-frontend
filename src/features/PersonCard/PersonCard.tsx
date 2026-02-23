@@ -1,22 +1,23 @@
 import styles from './PersonCard.module.css'
 
 interface IProps {
+    id: string;
     firstname: string;
     name: string;
     lastname: string;
     birthday: string;
-    onDelete: (params: {firstname: string; name: string; lastname: string; birthday: string}) => void;
-    onChange: (params: {firstname: string; name: string; lastname: string; birthday: string}) => void;
+    onDelete: (params: {id: string; firstname: string; name: string; lastname: string; birthday: string}) => void;
+    onChange: (params: {id: string; firstname: string; name: string; lastname: string; birthday: string}) => void;
 }
 
-export const PersonCard = ({firstname, name, lastname, birthday, onDelete, onChange}: IProps) => {
+export const PersonCard = ({id, firstname, name, lastname, birthday, onDelete, onChange}: IProps) => {
 
     const handleDeleteClick = () => {
-        onDelete({firstname, name, lastname, birthday})
+        onDelete({id, firstname, name, lastname, birthday})
     }
 
     const handleChangeClick = () => {
-        onChange({firstname, name, lastname, birthday})
+        onChange({id, firstname, name, lastname, birthday})
     }
 
     return (

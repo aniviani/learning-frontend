@@ -1,21 +1,22 @@
 
 interface IProps {
+    id: string;
     name: string;
     age: number;
-    onDelete: (a: {name: string; age: number}) => void;
-    onChange: (params: {name: string; age: number}) => void;
+    onDelete: (a: {id: string; name: string; age: number}) => void;
+    onChange: (params: {id: string; name: string; age: number}) => void;
 }
 
-export const UserCard = ({ name, age, onDelete, onChange }: IProps) => {
+export const UserCard = ({ id, name, age, onDelete, onChange }: IProps) => {
 
 const handleDeleteClick = () => {
     console.log('кнопка удалить нажата', `имя пользователя: ${name}`)
-    onDelete({name, age})
+    onDelete({id, name, age})
 }
 
 const handleChangeClick = () => {
     console.log('кнопка редактировать нажата', `имя пользователя: ${name}`)
-    onChange({name, age})
+    onChange({id, name, age})
 }
 
     return (
