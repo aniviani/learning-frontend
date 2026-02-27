@@ -1,11 +1,10 @@
-import { Test } from "./features/Test/Test"
+import { TaskList } from "./features/TaskList/TaskList"
 
 export const App = () => {
 
-
   return (
     <>
-      <Test/>
+      <TaskList/>
     </>
   )
 }

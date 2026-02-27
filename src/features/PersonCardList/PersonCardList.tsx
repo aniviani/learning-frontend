@@ -1,12 +1,20 @@
-import { useState } from "react"
+import { useState, type ChangeEventHandler } from "react"
 import { PersonCard } from "../PersonCard/PersonCard"
+import { CreatePersonForm } from "./ui/CreatePersonForm/CreatePersonForm";
+import { searchPersons } from "./utils/searchPerson";
+import { sortPersons } from "./utils/sortPersons";
 
-interface IPerson {
+export interface IPerson {
 id: string;
 firstname: string;
 name: string;
 lastname: string;
 birthday: string;
+}
+
+export enum SortType {
+  ASC = 'asc',
+  DESC = 'desc'
 }
 
 export const PersonCardList = () => {
@@ -28,6 +36,9 @@ export const PersonCardList = () => {
   }
   ])
 
+  const [ searchValue, setSearchValue ] = useState<string>('')
+  const [ sort, setSort ] = useState<SortType>(SortType.ASC)
+
   const handleDelete = (params: {id: string; firstname: string; name: string; lastname: string; birthday: string}) => {
     console.log(`нажата кнопка удалить.. ${params.firstname} ${params.name} ${params.lastname} ${params.birthday}`)
 
@@ -39,10 +50,40 @@ export const PersonCardList = () => {
     console.log(`нажата кнопка редактировать.. ${params.firstname} ${params.name} ${params.lastname} ${params.birthday}`)
   }
 
+  const createPerson = (params: {firstname: string; name: string; lastname: string; birthday: string}) => {
+    
+    const peopleAfterSubmit = [...people, { id: crypto.randomUUID(), firstname: params.firstname, name: params.name, lastname: params.lastname, birthday: params.birthday}]
+    setPeople(peopleAfterSubmit)
+  }
+
+  const changeSearchValue: ChangeEventHandler<HTMLInputElement> = (event) => {
+    setSearchValue(event.target.value)
+}
+
+  const changeSort: ChangeEventHandler<HTMLSelectElement> = (event) => {
+    setSort(event.target.value as SortType)
+
+}
+
+const searchedPersons = searchPersons({searchFirstname: searchValue, people})
+const sortedPersons = sortPersons({sort, people: searchedPersons})
+
   return (
   <>
+
+  <input type="text" placeholder="поиск по фамилии" value={searchValue} onChange={changeSearchValue}/>
+
+  <select value={sort} onChange={changeSort}>
+    <option value={SortType.ASC}>от А до Я</option>
+    <option value={SortType.DESC}>от Я до А</option>
+  </select>
+  
+  <CreatePersonForm
+  onSubmit={createPerson}
+  />
+
   <div>
-    {people.map((person) =>
+    {sortedPersons.map((person) =>
     <PersonCard 
     key={person.id} 
     id={person.id}
