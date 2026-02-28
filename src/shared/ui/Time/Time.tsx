@@ -1,5 +1,10 @@
-import styles from './Time.module.css'
+import styles from './Time.module.css';
 
 export const Time = () => {
-    return <input type='time' className={styles.time}/>
-}
+  return (
+    <input
+      type="time"
+      className={styles.time}
+    />
+  );
+};

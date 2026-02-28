@@ -1,17 +1,20 @@
-import {  type ChangeEventHandler } from 'react'
+import { type ChangeEventHandler } from 'react';
 
 interface IProps {
-value: string;
-onChange: (newValue: string) => void;
+  value: string;
+  onChange: (newValue: string) => void;
 }
 
-export const Input = ({value, onChange }: IProps) => {
+export const Input = ({ value, onChange }: IProps) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    onChange(event.target.value);
+  };
 
-    const handleChange: ChangeEventHandler<HTMLInputElement> = ( event ) => {
-        onChange(event.target.value)
-    }
-
-    return (
-        <input type="text" value={value} onChange={ handleChange }/>
-    )
-}
+  return (
+    <input
+      type="text"
+      value={value}
+      onChange={handleChange}
+    />
+  );
+};

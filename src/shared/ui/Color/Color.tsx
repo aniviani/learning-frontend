@@ -1,5 +1,10 @@
-import styles from './Color.module.css'
+import styles from './Color.module.css';
 
 export const Color = () => {
-    return <input type='color' className={styles.color}/>
-}
+  return (
+    <input
+      type="color"
+      className={styles.color}
+    />
+  );
+};

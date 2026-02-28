@@ -1,10 +1,9 @@
-import { TaskList } from "./features/TaskList/TaskList"
+import { PracticeList } from './features/PracticeList/PracticeList';
 
 export const App = () => {
-
   return (
     <>
-      <TaskList/>
+      <PracticeList />
     </>
-  )
-}
+  );
+};

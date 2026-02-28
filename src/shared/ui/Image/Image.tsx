@@ -1,5 +1,10 @@
-import styles from './Image.module.css'
+import styles from './Image.module.css';
 
 export const Image = () => {
-    return <input type='image' className={styles.image}/>
-}
+  return (
+    <input
+      type="image"
+      className={styles.image}
+    />
+  );
+};

@@ -1,5 +1,10 @@
-import styles from './Week.module.css'
+import styles from './Week.module.css';
 
 export const Week = () => {
-    return <input type='week' className={styles.week}/>
-}
+  return (
+    <input
+      type="week"
+      className={styles.week}
+    />
+  );
+};

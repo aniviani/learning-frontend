@@ -1,25 +1,25 @@
-import { type ChangeEvent, useState} from 'react'
+import { type ChangeEvent, useState } from 'react';
 import type { TTask } from '../tasks';
 import { searchTasks } from './searchTasks';
 
 interface IParams {
-    tasks: TTask[]
+  tasks: TTask[];
 }
 
 interface IResult {
-    searchValue: string;
-    searchedTasks: TTask[];
-    handleSearchChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  searchValue: string;
+  searchedTasks: TTask[];
+  handleSearchChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const useSearchTasks = ({tasks}: IParams): IResult => {
-    const [searchValue, setSearchValue] = useState<string>('')
-    
-    const searchedTasks = searchTasks({search: searchValue, tasks})
+export const useSearchTasks = ({ tasks }: IParams): IResult => {
+  const [searchValue, setSearchValue] = useState<string>('');
 
-    const handleSearchChange: IResult['handleSearchChange'] = (event) => {
-        setSearchValue(event.target.value)
-    }
+  const searchedTasks = searchTasks({ search: searchValue, tasks });
 
-    return { searchedTasks, searchValue, handleSearchChange }
-}
+  const handleSearchChange: IResult['handleSearchChange'] = (event) => {
+    setSearchValue(event.target.value);
+  };
+
+  return { searchedTasks, searchValue, handleSearchChange };
+};

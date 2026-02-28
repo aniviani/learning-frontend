@@ -1,12 +1,12 @@
 .time {
-    background-color: rgb(130, 181, 28);
-    display: block;
-    margin-top: 10px;
-    border-radius: 4px;
-    border: 2px solid #084f03; 
+  background-color: rgb(130, 181, 28);
+  display: block;
+  margin-top: 10px;
+  border-radius: 4px;
+  border: 2px solid #084f03;
 }
 
 .time:hover {
-    border-color: #4d6f05;
-    outline: none;
+  border-color: #4d6f05;
+  outline: none;
 }

@@ -1,38 +1,37 @@
-import { useState, type FC } from "react";
+import { useState, type FC } from 'react';
 
 interface IProps {
-    initialValue: number
-    step: number
+  initialValue: number;
+  step: number;
 }
 
-export const Counter2: FC <IProps> = ({step, initialValue}) => {
+export const Counter2: FC<IProps> = ({ step, initialValue }) => {
+  const [value, setValue] = useState<number>(initialValue);
 
-    const [value, setValue] = useState<number>(initialValue)
+  const increment = () => {
+    setValue((previousValue) => {
+      const nextValue = previousValue + step;
 
-    const increment = () => {
-        setValue((previousValue) => {
-            const nextValue = previousValue + step
+      if (nextValue > 10) {
+        console.log('предупреждение!!!');
+      }
 
-            if(nextValue > 10) {
-                console.log('предупреждение!!!')
-            }
+      return nextValue;
+    });
+  };
 
-            return nextValue
-        }) 
-    }
+  const decrement = () => {
+    setValue((previousValue) => {
+      return previousValue - step;
+    });
+  };
 
-    const decrement = () => {
-         setValue((previousValue) => {
-            return previousValue - step
-        }) 
-    }
-
-    return (
+  return (
     <>
-        <div>Counter2: {value}</div>
-        <div>Step: {step}:</div>
-        <button onClick={increment}>+</button>
-        <button onClick={decrement}>-</button>
+      <div>Counter2: {value}</div>
+      <div>Step: {step}:</div>
+      <button onClick={increment}>+</button>
+      <button onClick={decrement}>-</button>
     </>
-    )
-}
+  );
+};

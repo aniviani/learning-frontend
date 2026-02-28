@@ -1,13 +1,13 @@
 .number {
-    background-color: rgb(171, 209, 242);
-    display: block;
-    margin-top: 10px;
-    border-radius: 4px;
-    border: 2px solid #1c0578; 
+  background-color: rgb(171, 209, 242);
+  display: block;
+  margin-top: 10px;
+  border-radius: 4px;
+  border: 2px solid #1c0578;
 }
 
 .number:focus {
-    transform: translateY(-2px); 
-    border-color: #505983;
-    outline: none;
+  transform: translateY(-2px);
+  border-color: #505983;
+  outline: none;
 }

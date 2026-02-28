@@ -1,19 +1,17 @@
-
 interface IProps {
-    number: number;
-    onDelete: (params: {number: number}) => void;
+  number: number;
+  onDelete: (params: { number: number }) => void;
 }
 
-export const NumberCard = ({number, onDelete}: IProps) => {
+export const NumberCard = ({ number, onDelete }: IProps) => {
+  const handleDelete = () => {
+    onDelete({ number });
+  };
 
-const handleDelete = () => {
-    onDelete({number})
-}
-
-    return (
-        <>
-            <div>{number}</div>
-            <button onClick={handleDelete}>удалить</button>
-        </>
-    )
-}
+  return (
+    <>
+      <div>{number}</div>
+      <button onClick={handleDelete}>удалить</button>
+    </>
+  );
+};

@@ -1,14 +1,14 @@
-import { type TAddress } from "./sortAddresses"
+import { type TAddress } from './sortAddresses';
 
 interface IParams {
-    search: string;
-    addresses: TAddress[]
+  search: string;
+  addresses: TAddress[];
 }
 
-export const searchAddresses = ({search, addresses}: IParams): TAddress[] => {
-    if (search === ''){
-        return addresses
-    }
+export const searchAddresses = ({ search, addresses }: IParams): TAddress[] => {
+  if (search === '') {
+    return addresses;
+  }
 
-    return addresses.filter((address) => address.city.includes(search))
-}
+  return addresses.filter((address) => address.city.includes(search));
+};

@@ -1,5 +1,10 @@
-import styles from './Reset.module.css'
+import styles from './Reset.module.css';
 
 export const Reset = () => {
-    return <input type='reset' className={styles.reset}/>
-}
+  return (
+    <input
+      type="reset"
+      className={styles.reset}
+    />
+  );
+};

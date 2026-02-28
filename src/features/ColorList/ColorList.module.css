@@ -1,32 +1,32 @@
 .container {
-    padding: 10px;
+  padding: 10px;
 }
 
 .colors_item {
-    border: 1px solid black;
-    text-align: center; 
-    display: flex;
-    align-items: center; 
-    justify-content: center; 
-    height: 30px;
+  border: 1px solid black;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
 }
 
 .red {
-    margin: 10px;
-    background-color: rgba(236, 50, 50, 0.750);
+  margin: 10px;
+  background-color: rgba(236, 50, 50, 0.75);
 }
 
 .blue {
-    margin: 10px;
-    background-color: rgba(67, 67, 207, 0.750);
+  margin: 10px;
+  background-color: rgba(67, 67, 207, 0.75);
 }
 
 .green {
-    margin: 10px;
-    background-color: rgb(24, 131, 24, 0.750);
+  margin: 10px;
+  background-color: rgb(24, 131, 24, 0.75);
 }
 
 .orange {
-    margin: 10px;
-    background-color: rgb(247, 160, 0.750);
+  margin: 10px;
+  background-color: rgb(247, 160, 0.75);
 }

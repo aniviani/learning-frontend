@@ -1,5 +1,10 @@
-import styles from './Date.module.css'
+import styles from './Date.module.css';
 
 export const Date = () => {
-    return <input type='date' className={styles.date}/>
-}
+  return (
+    <input
+      type="date"
+      className={styles.date}
+    />
+  );
+};

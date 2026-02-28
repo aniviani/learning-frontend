@@ -1,18 +1,17 @@
-import type { ITask } from "../model/ITask";
+import type { ITask } from '../model/ITask';
 
 interface IParams {
-    tasks: ITask[];
+  tasks: ITask[];
 }
 
-export const calculateDoneTasksCount = ({tasks}: IParams): number => {
+export const calculateDoneTasksCount = ({ tasks }: IParams): number => {
+  let count: number = 0;
 
-    let count: number = 0;
-
-    for (let i = 0; i < tasks.length; i++) {
-        if (tasks[i].done === true) {
-            count ++;
-        }
+  for (let i = 0; i < tasks.length; i++) {
+    if (tasks[i].done === true) {
+      count++;
     }
+  }
 
-    return count
-}
+  return count;
+};

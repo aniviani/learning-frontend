@@ -1,5 +1,10 @@
-import styles from './Search.module.css'
+import styles from './Search.module.css';
 
 export const Search = () => {
-    return <input type='search' className={styles.search}/>
-}
+  return (
+    <input
+      type="search"
+      className={styles.search}
+    />
+  );
+};

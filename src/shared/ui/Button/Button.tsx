@@ -1,13 +1,20 @@
-import styles from './Button.module.css'
-import { type FC, type ReactNode, type MouseEvent} from "react"
+import styles from './Button.module.css';
+import { type FC, type ReactNode, type MouseEvent } from 'react';
 
 interface IProps {
-    onClick: (event: MouseEvent<HTMLButtonElement>) => void;
-    children: ReactNode;
-    disabled?: boolean;
+  onClick: (event: MouseEvent<HTMLButtonElement>) => void;
+  children: ReactNode;
+  disabled?: boolean;
 }
 
-export const Button: FC<IProps> = ({onClick, children, disabled}) => {
-    return <button disabled={disabled} className={styles.button} onClick={onClick}>{children}</button>
-}
-
+export const Button: FC<IProps> = ({ onClick, children, disabled }) => {
+  return (
+    <button
+      disabled={disabled}
+      className={styles.button}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+};

@@ -1,5 +1,10 @@
-import styles from './Password.module.css'
+import styles from './Password.module.css';
 
 export const Password = () => {
-    return <input type='password' className={styles.password}/>
-}
+  return (
+    <input
+      type="password"
+      className={styles.password}
+    />
+  );
+};

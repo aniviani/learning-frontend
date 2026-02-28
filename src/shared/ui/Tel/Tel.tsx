@@ -1,5 +1,10 @@
-import styles from './Tel.module.css'
+import styles from './Tel.module.css';
 
 export const Tel = () => {
-    return <input type='tel' className={styles.tel}/>
-}
+  return (
+    <input
+      type="tel"
+      className={styles.tel}
+    />
+  );
+};

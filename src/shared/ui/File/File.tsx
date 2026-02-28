@@ -1,5 +1,10 @@
-import styles from './File.module.css'
+import styles from './File.module.css';
 
 export const File = () => {
-    return <input type='file' className={styles.file}/>
-}
+  return (
+    <input
+      type="file"
+      className={styles.file}
+    />
+  );
+};
