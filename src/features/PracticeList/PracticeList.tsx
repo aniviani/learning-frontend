@@ -1,8 +1,8 @@
 import { useState, type ChangeEventHandler } from 'react';
 import { Person } from './ui/Person';
-import { sortPersons } from './utils/sortPersons';
 import { CreatePersonForm } from './ui/CreatePersonForm';
 import { SortType } from './sortType.ts';
+import { useSortPersons } from './sort/useSortPersons.ts';
 
 export interface IPeople {
   id: string;
@@ -25,7 +25,6 @@ export const PracticeList = () => {
   ]);
 
   const [searchValue, setSearchValue] = useState<string>('');
-  const [sort, setSort] = useState<SortType>(SortType.ASC);
 
   const changeSearchValue: ChangeEventHandler<HTMLInputElement> = (event) => {
     setSearchValue(event.target.value);
@@ -42,12 +41,6 @@ export const PracticeList = () => {
     setPeople(personAfterDelete);
   };
 
-  const changeSort: ChangeEventHandler<HTMLSelectElement> = (event) => {
-    setSort(event.target.value as SortType);
-  };
-
-  const sortedPerson = sortPersons({ sort, people: searchedPersons });
-
   const createPerson = (params: { name: string; age: number }) => {
     const peopleAfterSubmit = [
       ...people,
@@ -55,6 +48,10 @@ export const PracticeList = () => {
     ];
     setPeople(peopleAfterSubmit);
   };
+
+  const { sort, sortedPerson, changeSort } = useSortPersons({
+    searchedPersons,
+  });
 
   return (
     <div>
