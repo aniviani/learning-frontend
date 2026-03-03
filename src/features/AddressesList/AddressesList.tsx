@@ -1,15 +1,18 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import styles from './AddressesList.module.css';
-import {sortAddresses, type TAddress} from './sort-addresses/utils/sortAddresses.ts';
-import {getFilteredAddresses} from './filter-addresses/utils/getFiltredAddresses.ts';
-import {searchAddresses} from './search-addresses/utils/searchAddresses.ts';
-import {Modal} from '../../shared/ui/Modal/Modal';
-import {AddAddressForm} from './AddAddressForm/AddAddressForm';
-import {SortType} from "./sort-addresses/types/SortType.ts";
-import {SortSelect} from "./sort-addresses/ui/SortSelect.tsx";
-import {FilterSelect} from "./filter-addresses/ui/FilterSelect.ts";
-import {SearchInput} from "./search-addresses/ui/SearchInput.tsx";
-import {useAddAddress} from "./add-address/model/useAddAddress.ts";
+import {
+  sortAddresses,
+  type TAddress,
+} from './sort-addresses/utils/sortAddresses.ts';
+import { getFilteredAddresses } from './filter-addresses/utils/getFiltredAddresses.ts';
+import { searchAddresses } from './search-addresses/utils/searchAddresses.ts';
+import { Modal } from '../../shared/ui/Modal/Modal';
+import { AddAddressForm } from './AddAddressForm/AddAddressForm';
+import { SortType } from './sort-addresses/types/SortType.ts';
+import { SortSelect } from './sort-addresses/ui/SortSelect.tsx';
+import { FilterSelect } from './filter-addresses/ui/FilterSelect.ts';
+import { SearchInput } from './search-addresses/ui/SearchInput.tsx';
+import { useAddAddress } from './add-address/model/useAddAddress.ts';
 
 export const AddressesList = () => {
   const [sort, setSort] = useState<SortType>(SortType.ASC);
@@ -31,13 +34,26 @@ export const AddressesList = () => {
     addresses: filteresAddresses,
   });
 
-  const {addAddress} = useAddAddress({setAddresses, addresses, setOpenCreateAddressModal})
+  const { addAddress } = useAddAddress({
+    setAddresses,
+    addresses,
+    setOpenCreateAddressModal,
+  });
 
   return (
     <div>
-        <SortSelect sort={sort} setSort={setSort}/>
-        <FilterSelect filter={filter} setFilter={setFilter}/>
-        <SearchInput search={search} setSearch={setSearch}/>
+      <SortSelect
+        sort={sort}
+        setSort={setSort}
+      />
+      <FilterSelect
+        filter={filter}
+        setFilter={setFilter}
+      />
+      <SearchInput
+        search={search}
+        setSearch={setSearch}
+      />
 
       <button onClick={() => setOpenCreateAddressModal(true)}>
         Добавить адрес

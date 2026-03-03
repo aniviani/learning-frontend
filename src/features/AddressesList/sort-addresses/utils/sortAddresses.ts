@@ -1,4 +1,4 @@
-import {SortType} from "../types/SortType.ts";
+import { SortType } from '../types/SortType.ts';
 
 interface IParams {
   sort: SortType;
