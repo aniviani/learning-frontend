@@ -1,14 +1,18 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import styles from './AddressesList.module.css';
-import { sortAddresses } from './sortAddresses';
-import { getFilteredAddresses } from './getFiltredAddresses';
-import { searchAddresses } from './searchAddresses';
-import { type TAddress } from './sortAddresses';
-import { Modal } from '../../shared/ui/Modal/Modal';
-import { AddAddressForm } from './AddAddressForm/AddAddressForm';
+import {sortAddresses, type TAddress} from './sort-addresses/utils/sortAddresses.ts';
+import {getFilteredAddresses} from './filter-addresses/utils/getFiltredAddresses.ts';
+import {searchAddresses} from './search-addresses/utils/searchAddresses.ts';
+import {Modal} from '../../shared/ui/Modal/Modal';
+import {AddAddressForm} from './AddAddressForm/AddAddressForm';
+import {SortType} from "./sort-addresses/types/SortType.ts";
+import {SortSelect} from "./sort-addresses/ui/SortSelect.tsx";
+import {FilterSelect} from "./filter-addresses/ui/FilterSelect.ts";
+import {SearchInput} from "./search-addresses/ui/SearchInput.tsx";
+import {useAddAddress} from "./add-address/model/useAddAddress.ts";
 
 export const AddressesList = () => {
-  const [sort, setSort] = useState<'asc' | 'desc'>('asc');
+  const [sort, setSort] = useState<SortType>(SortType.ASC);
   const [filter, setFilter] = useState<'Россия' | 'Франция' | 'Италия' | 'all'>(
     'all',
   );
@@ -27,43 +31,13 @@ export const AddressesList = () => {
     addresses: filteresAddresses,
   });
 
-  const addAddress = ({ newAddress }: { newAddress: TAddress }) => {
-    setAddresses([...addresses, newAddress]);
-    setOpenCreateAddressModal(false);
-  };
+  const {addAddress} = useAddAddress({setAddresses, addresses, setOpenCreateAddressModal})
 
   return (
     <div>
-      <select
-        value={sort}
-        onChange={(event) => setSort(event.target.value as 'asc' | 'desc')}
-        name="select"
-      >
-        <option value="asc">по возрастанию</option>
-        <option value="desc">по убыванию</option>
-      </select>
-
-      <select
-        value={filter}
-        onChange={(event) =>
-          setFilter(
-            event.target.value as 'Россия' | 'Франция' | 'Италия' | 'all',
-          )
-        }
-        name="select"
-      >
-        <option value="Россия">Россия</option>
-        <option value="Франция">Франция</option>
-        <option value="Италия">Италия</option>
-        <option value="all">все</option>
-      </select>
-
-      <input
-        value={search}
-        type="text"
-        placeholder="поиск.."
-        onChange={(event) => setSearch(event.target.value)}
-      />
+        <SortSelect sort={sort} setSort={setSort}/>
+        <FilterSelect filter={filter} setFilter={setFilter}/>
+        <SearchInput search={search} setSearch={setSearch}/>
 
       <button onClick={() => setOpenCreateAddressModal(true)}>
         Добавить адрес

@@ -1,5 +1,7 @@
+import {SortType} from "../types/SortType.ts";
+
 interface IParams {
-  sort: 'asc' | 'desc';
+  sort: SortType;
   addresses: TAddress[];
 }
 
@@ -9,7 +11,7 @@ export type TAddress = {
 };
 
 export const sortAddresses = ({ sort, addresses }: IParams): TAddress[] => {
-  if (sort === 'asc') {
+  if (sort === SortType.ASC) {
     return addresses.toSorted((previousElement, nextElement) => {
       if (previousElement.country < nextElement.country) {
         return -1;

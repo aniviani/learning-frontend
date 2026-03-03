@@ -1,4 +1,4 @@
-import { type TAddress } from './sortAddresses';
+import { type TAddress } from './sort-addresses/utils/sortAddresses.ts';
 
 interface IParams {
   search: string;
