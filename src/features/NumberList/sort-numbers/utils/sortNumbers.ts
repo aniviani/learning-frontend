@@ -1,11 +1,13 @@
+import { SortType } from '../types/SortType.ts';
+
 interface IParams {
-  sort: 'asc' | 'desc';
+  sort: SortType;
   numbers: number[];
 }
 
 export const sortNumbers = ({ sort, numbers }: IParams): number[] => {
-  if (sort === 'asc') {
-    return numbers.sort((previousElement, nextElement) => {
+  if (sort === SortType.ASC) {
+    return numbers.toSorted((previousElement, nextElement) => {
       if (previousElement < nextElement) {
         return -1;
       }
@@ -18,7 +20,7 @@ export const sortNumbers = ({ sort, numbers }: IParams): number[] => {
     });
   }
 
-  return numbers.sort((previousElement, nextElement) => {
+  return numbers.toSorted((previousElement, nextElement) => {
     if (previousElement < nextElement) {
       return 1;
     }

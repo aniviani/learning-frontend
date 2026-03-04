@@ -1,9 +1,9 @@
-import { PracticeList } from './features/PracticeList/PracticeList';
+import { NumberList } from './widgets/NumberList/NumberList.tsx';
 
 export const App = () => {
   return (
     <>
-      <PracticeList />
+      <NumberList />
     </>
   );
 };

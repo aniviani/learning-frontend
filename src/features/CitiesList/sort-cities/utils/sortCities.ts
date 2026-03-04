@@ -1,10 +1,12 @@
+import { SortType } from '../types/SortType.ts';
+
 interface IParams {
   cities: string[];
-  sort: 'asc' | 'desc';
+  sort: SortType;
 }
 
 export const sortCities = ({ sort, cities }: IParams): string[] => {
-  if (sort === 'asc') {
+  if (sort === SortType.ASC) {
     return cities.toSorted((previousElement, nextElement) => {
       return previousElement
         .toLowerCase()
