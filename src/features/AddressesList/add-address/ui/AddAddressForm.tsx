@@ -1,6 +1,6 @@
 import { useState, type FC } from 'react';
-import { Button } from '../../../shared/ui/Button/Button';
-import { type TAddress } from './../sortAddresses';
+import { Button } from '../../../../shared/ui/Button/Button.tsx';
+import type { TAddress } from '../../sort-addresses/utils/sortAddresses.ts';
 
 interface IProps {
   onAddAddress: (newAddress: TAddress) => void;
