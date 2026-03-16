@@ -1,15 +1,28 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import type { IPlanet } from '../IPlanet.ts';
 import { planetsApi } from '../api/planetsApi.ts';
 
-interface IResult {
-  isLoading: boolean;
-  planets: IPlanet[] | null;
-  loadPlanets: () => Promise<void>;
-  error: Error | null;
+interface ILoadingResult {
+  isLoading: true;
+  planets: null;
+  error: null;
 }
 
-export const usePlanetsQuery = (): IResult => {
+interface IErrorResult {
+  isLoading: false;
+  planets: null;
+  error: Error;
+}
+
+interface ISuccessResult {
+  isLoading: false;
+  planets: IPlanet[];
+  error: null;
+}
+
+type TResult = ILoadingResult | IErrorResult | ISuccessResult
+
+export const usePlanetsQuery = (): TResult => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [planets, setPlanets] = useState<IPlanet[] | null>(null);
   const [error, setError] = useState<Error | null>(null);
@@ -27,5 +40,9 @@ export const usePlanetsQuery = (): IResult => {
     }
   };
 
-  return { isLoading, planets, loadPlanets, error };
+  useEffect(() => {
+    void loadPlanets()
+  }, []);
+
+  return { isLoading, planets, error } as TResult;
 };
