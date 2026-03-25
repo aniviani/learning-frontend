@@ -1,8 +1,12 @@
 import { Task } from './ui/Task.tsx';
 import { useTasksQuery } from './model/useTasksQuery.ts';
+import { useDeleteTaskMutation } from './model/useDeleteTaskMutation.ts';
+import { useCompleteTaskMutation } from './model/useCompleteTaskMutation.ts';
 
 export const TaskListWithServer = () => {
-  const { isLoading, error, tasks } = useTasksQuery();
+  const { isLoading, error, tasks, setTasks } = useTasksQuery();
+  const { deleteTask } = useDeleteTaskMutation({ setTasks });
+  const { completeTask } = useCompleteTaskMutation({ setTasks });
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -22,6 +26,10 @@ export const TaskListWithServer = () => {
           description={task.description}
           completed={task.completed}
           createdAt={task.createdAt}
+          onDelete={() => deleteTask({ id: task.id })}
+          onComplete={() =>
+            completeTask({ id: task.id, completed: !task.completed })
+          }
         />
       ))}
     </div>

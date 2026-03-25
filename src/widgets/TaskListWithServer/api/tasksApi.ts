@@ -12,6 +12,7 @@ export const tasksApi = {
     const response = await fetch(BASE_URL, {
       method: 'POST',
       body: JSON.stringify(dto),
+      headers: { 'Content-Type': 'application/json' },
     });
 
     if (!response.ok) {
@@ -73,6 +74,7 @@ export const tasksApi = {
     const response = await fetch(`${BASE_URL}/${id}`, {
       method: 'PATCH',
       body: JSON.stringify(dto),
+      headers: { 'Content-Type': 'application/json' },
     });
 
     if (!response.ok) {

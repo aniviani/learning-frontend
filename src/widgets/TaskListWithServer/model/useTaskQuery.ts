@@ -1,41 +1,42 @@
-import { type Dispatch, type SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { ITaskWithServer } from '../ITaskWithServer.ts';
 import { tasksApi } from '../api/tasksApi.ts';
+
+interface IParams {
+  id: string;
+}
 
 interface ILoadingResult {
   isLoading: true;
   error: null;
-  tasks: null;
-  setTasks: Dispatch<SetStateAction<ITaskWithServer[] | null>>;
+  task: null;
 }
 
 interface IErrorResult {
   isLoading: false;
   error: Error;
-  tasks: null;
-  setTasks: Dispatch<SetStateAction<ITaskWithServer[] | null>>;
+  task: null;
 }
 
 interface ISuccessResult {
   isLoading: false;
   error: null;
-  tasks: ITaskWithServer[];
-  setTasks: Dispatch<SetStateAction<ITaskWithServer[] | null>>;
+  task: ITaskWithServer;
 }
 
 type TResult = ILoadingResult | IErrorResult | ISuccessResult;
 
-export const useTasksQuery = (): TResult => {
+export const useTaskQuery = (params: IParams): TResult => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [tasks, setTasks] = useState<ITaskWithServer[] | null>(null);
+  const [task, setTask] = useState<ITaskWithServer | null>(null);
   const [error, setError] = useState<Error | null>(null);
 
-  const loadTasks = async () => {
+  const loadTask = async () => {
     try {
       setIsLoading(true);
       setError(null);
-      const tasksFromServer = await tasksApi.getAll();
-      setTasks(tasksFromServer);
+      const taskFromServer = await tasksApi.getById(params.id);
+      setTask(taskFromServer);
     } catch (error) {
       setError(error as Error);
     } finally {
@@ -44,8 +45,8 @@ export const useTasksQuery = (): TResult => {
   };
 
   useEffect(() => {
-    void loadTasks();
+    void loadTask();
   }, []);
 
-  return { isLoading, error, tasks, setTasks } as TResult;
+  return { isLoading, error, task } as TResult;
 };
