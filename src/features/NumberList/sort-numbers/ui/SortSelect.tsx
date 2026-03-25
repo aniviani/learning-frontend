@@ -1,12 +1,12 @@
 import { SortType } from '../types/SortType.ts';
-import type { SetStateAction } from 'react';
+import type { FC, SetStateAction } from 'react';
 
-interface IParams {
+interface IProps {
   sort: SortType;
   setSort: (value: SetStateAction<SortType>) => void;
 }
 
-export const SortSelect = ({ sort, setSort }: IParams) => {
+export const SortSelect: FC<IProps> = ({ sort, setSort }) => {
   return (
     <select
       value={sort}

@@ -1,11 +1,11 @@
-import type { ChangeEvent } from 'react';
+import type { ChangeEvent, FC } from 'react';
 
-interface IParams {
+interface IProps {
   searchValue: string;
   changeSearchValue: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const SearchInput = ({ searchValue, changeSearchValue }: IParams) => {
+export const SearchInput: FC<IProps> = ({ searchValue, changeSearchValue }) => {
   return (
     <input
       type="text"

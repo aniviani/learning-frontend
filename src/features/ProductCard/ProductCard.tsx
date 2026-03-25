@@ -1,4 +1,5 @@
 import styles from './ProductCard.module.css';
+import type { FC } from 'react';
 
 interface IProps {
   id: string;
@@ -19,14 +20,14 @@ interface IProps {
   }) => void;
 }
 
-export const ProductCard = ({
+export const ProductCard: FC<IProps> = ({
   id,
   price,
   name,
   rating,
   onAddToCart,
   onAddToFavorite,
-}: IProps) => {
+}) => {
   const handleAddToCart = () => {
     onAddToCart({ id, price, name, rating });
   };

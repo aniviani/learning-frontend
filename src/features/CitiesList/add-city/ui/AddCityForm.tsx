@@ -1,10 +1,10 @@
-import { type ChangeEventHandler, useState } from 'react';
+import { type ChangeEventHandler, useState, type FC } from 'react';
 
 interface IProps {
   onSubmit: (params: { addedCity: string }) => void;
 }
 
-export const AddCityForm = ({ onSubmit }: IProps) => {
+export const AddCityForm: FC<IProps> = ({ onSubmit }) => {
   const [addedCity, setAddedCity] = useState<string>('');
   const handleCityAdd: ChangeEventHandler<HTMLInputElement> = (event) => {
     const newCityAdd = event.target.value;

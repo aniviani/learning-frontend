@@ -2,13 +2,16 @@ import { Task } from '../Task/Task';
 import { useState } from 'react';
 import { Modal } from '../../shared/ui/Modal/Modal.tsx';
 import type { TTask } from './tasks.ts';
-import { EditTaskForm } from './ui/EditTaskForm.tsx';
-import { SortType, useSortTasks } from './sort/useSortTasks.ts';
+import { EditTaskForm } from './edit-task/ui/EditTaskForm.tsx';
+import { useSortTasks } from './sort/model/useSortTasks.ts';
 import { tasks as allTasks } from '../ToDoList/tasks';
-import { useSearchTasks } from './search/useSearchTasks.ts';
-import { TaskStatus, useFilterTasks } from './filter/useFilterTasks.ts';
-import { useDeleteTask } from './delete-task/useDeleteTask.ts';
-import { useEditTask } from './edit-task/useEditTask.ts';
+import { useSearchTasks } from './search/model/useSearchTasks.ts';
+import { useFilterTasks } from './filter/model/useFilterTasks.ts';
+import { useDeleteTask } from './delete-task/model/useDeleteTask.ts';
+import { useEditTask } from './edit-task/model/useEditTask.ts';
+import { SearchInput } from './search/ui/SearchInput.tsx';
+import { SortSelect } from './sort/ui/SortSelect.tsx';
+import { FilterSelect } from './filter/ui/FilterSelect.tsx';
 
 export const ToDoList = () => {
   const [tasks, setTasks] = useState<TTask[]>(allTasks);
@@ -26,31 +29,19 @@ export const ToDoList = () => {
   return (
     <div>
       <div>To Do List:</div>
-      <input
-        type="text"
-        placeholder="поиск"
-        value={searchValue}
-        onChange={handleSearchChange}
+
+      <SearchInput
+        searchValue={searchValue}
+        handleSearchChange={handleSearchChange}
       />
-
-      <select
-        value={sort}
-        onChange={handleSortChange}
-        name="select"
-      >
-        <option value={SortType.ASC}>от А до Я</option>
-        <option value={SortType.DESC}>от Я до А</option>
-      </select>
-
-      <select
-        value={filter}
-        onChange={handleFilterChange}
-        name="select"
-      >
-        <option value={TaskStatus.ALL}>все задачи</option>
-        <option value={TaskStatus.DONE}>готовые</option>
-        <option value={TaskStatus.NOT_DONE}>не готовые</option>
-      </select>
+      <SortSelect
+        sort={sort}
+        handleSortChange={handleSortChange}
+      />
+      <FilterSelect
+        filter={filter}
+        handleFilterChange={handleFilterChange}
+      />
 
       <div>
         {filteredTasks.map((task) => (

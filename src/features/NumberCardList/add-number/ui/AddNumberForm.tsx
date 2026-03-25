@@ -1,10 +1,10 @@
-import { type ChangeEventHandler, useState } from 'react';
+import { type ChangeEventHandler, type FC, useState } from 'react';
 
 interface IProps {
   onSubmit: (params: { addedNumber: number }) => void;
 }
 
-export const AddNumberForm = ({ onSubmit }: IProps) => {
+export const AddNumberForm: FC<IProps> = ({ onSubmit }) => {
   const [addedNumber, setAddedNumber] = useState<number>(0);
 
   const handleAddedNumberChange: ChangeEventHandler<HTMLInputElement> = (

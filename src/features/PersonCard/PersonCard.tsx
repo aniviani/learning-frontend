@@ -1,4 +1,6 @@
 import styles from './PersonCard.module.css';
+import type { FC } from 'react';
+import type { IPerson } from '../PersonCardList/PersonCardList.tsx';
 
 interface IProps {
   id: string;
@@ -6,23 +8,11 @@ interface IProps {
   name: string;
   lastname: string;
   birthday: string;
-  onDelete: (params: {
-    id: string;
-    firstname: string;
-    name: string;
-    lastname: string;
-    birthday: string;
-  }) => void;
-  onChange: (params: {
-    id: string;
-    firstname: string;
-    name: string;
-    lastname: string;
-    birthday: string;
-  }) => void;
+  onDelete: (params: IPerson) => void;
+  onChange: (params: IPerson) => void;
 }
 
-export const PersonCard = ({
+export const PersonCard: FC<IProps> = ({
   id,
   firstname,
   name,
@@ -30,7 +20,7 @@ export const PersonCard = ({
   birthday,
   onDelete,
   onChange,
-}: IProps) => {
+}) => {
   const handleDeleteClick = () => {
     onDelete({ id, firstname, name, lastname, birthday });
   };

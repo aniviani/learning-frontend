@@ -1,4 +1,4 @@
-import { TaskStatus } from './filter/useFilterTasks';
+import { TaskStatus } from './filter/model/useFilterTasks.ts';
 
 export type TTask = {
   id: string;

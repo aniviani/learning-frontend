@@ -1,9 +1,9 @@
-import { NumberList } from './widgets/NumberList/NumberList.tsx';
+import { TaskListWithServer } from './widgets/TaskListWithServer/TaskListWithServer.tsx';
 
 export const App = () => {
   return (
     <>
-      <NumberList />
+      <TaskListWithServer />
     </>
   );
 };

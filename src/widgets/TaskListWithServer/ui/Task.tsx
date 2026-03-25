@@ -17,6 +17,10 @@ interface IProps {
    * Дата создания
    */
   createdAt: string;
+
+  onDelete: () => void;
+
+  onComplete: () => void;
 }
 
 export const Task: FC<IProps> = ({
@@ -24,13 +28,21 @@ export const Task: FC<IProps> = ({
   description,
   completed,
   createdAt,
+  onDelete,
+  onComplete,
 }) => {
   return (
     <div>
+      <input
+        type="checkbox"
+        checked={completed}
+        onChange={() => onComplete()}
+      />
       <div>назание: {title}</div>
       <div>описание: {description}</div>
       <div>статус: {completed}</div>
       <div>дата создания: {createdAt}</div>
+      <button onClick={() => onDelete()}>удалить</button>
     </div>
   );
 };

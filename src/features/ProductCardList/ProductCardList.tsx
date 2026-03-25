@@ -1,6 +1,7 @@
 import { ProductCard } from '../ProductCard/ProductCard';
+import type { FC } from 'react';
 
-export const ProductCardList = () => {
+export const ProductCardList: FC = () => {
   const products = [
     {
       id: crypto.randomUUID(),

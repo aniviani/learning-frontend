@@ -1,8 +1,11 @@
-import { useState, type ChangeEventHandler } from 'react';
+import { type ChangeEventHandler, useState } from 'react';
 import { PersonCard } from '../PersonCard/PersonCard';
-import { CreatePersonForm } from './ui/CreatePersonForm/CreatePersonForm';
-import { searchPersons } from './utils/searchPerson';
-import { sortPersons } from './utils/sortPersons';
+import { CreatePersonForm } from './create-person/ui/CreatePersonForm.tsx';
+import { searchPersons } from './search-person/utils/searchPerson.ts';
+import { sortPersons } from './sort-persons/utils/sortPersons.ts';
+import { SearchInput } from './search-person/ui/SearchInput.tsx';
+import { SortSelect } from './sort-persons/ui/SortSelect.tsx';
+import { SortType } from './sort-persons/types/SortType.ts';
 
 export interface IPerson {
   id: string;
@@ -10,11 +13,6 @@ export interface IPerson {
   name: string;
   lastname: string;
   birthday: string;
-}
-
-export enum SortType {
-  ASC = 'asc',
-  DESC = 'desc',
 }
 
 export const PersonCardList = () => {
@@ -102,20 +100,14 @@ export const PersonCardList = () => {
 
   return (
     <>
-      <input
-        type="text"
-        placeholder="поиск по фамилии"
-        value={searchValue}
-        onChange={changeSearchValue}
+      <SearchInput
+        searchValue={searchValue}
+        changeSearchValue={changeSearchValue}
       />
-
-      <select
-        value={sort}
-        onChange={changeSort}
-      >
-        <option value={SortType.ASC}>от А до Я</option>
-        <option value={SortType.DESC}>от Я до А</option>
-      </select>
+      <SortSelect
+        sort={sort}
+        changeSort={changeSort}
+      />
 
       <CreatePersonForm onSubmit={createPerson} />
 
