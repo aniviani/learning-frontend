@@ -40,7 +40,6 @@ export const Task: FC<IProps> = ({
       />
       <div>назание: {title}</div>
       <div>описание: {description}</div>
-      <div>статус: {completed}</div>
       <div>дата создания: {createdAt}</div>
       <button onClick={() => onDelete()}>удалить</button>
     </div>
