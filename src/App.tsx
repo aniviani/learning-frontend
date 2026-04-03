@@ -1,9 +1,12 @@
-import { TaskListWithServer } from './widgets/TaskListWithServer/TaskListWithServer.tsx';
+import { ProductListWithServer } from './widgets/ProductListWithServer/ProductListWithServer.tsx';
+import { ProductsContextProvider } from './widgets/ProductListWithServer/model/productsContext.tsx';
 
 export const App = () => {
   return (
     <>
-      <TaskListWithServer />
+      <ProductsContextProvider>
+        <ProductListWithServer />
+      </ProductsContextProvider>
     </>
   );
 };
