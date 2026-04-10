@@ -1,6 +1,8 @@
 import type { FC } from 'react';
+import { DeleteProductButton } from './DeleteProductButton.tsx';
 
 interface IProps {
+  id: string;
   /**
    * название продукта
    */
@@ -21,17 +23,15 @@ interface IProps {
    * Дата создания
    */
   createdAt: string;
-
-  onDelete: () => void;
 }
 
 export const Product: FC<IProps> = ({
+  id,
   name,
   description,
   price,
   category,
   createdAt,
-  onDelete,
 }) => {
   return (
     <div>
@@ -40,7 +40,7 @@ export const Product: FC<IProps> = ({
       <div>стоимость: {price}</div>
       <div>категория: {category}</div>
       <div>дата создания: {createdAt}</div>
-      <button onClick={() => onDelete()}>удалить товар</button>
+      <DeleteProductButton id={id} />
     </div>
   );
 };
