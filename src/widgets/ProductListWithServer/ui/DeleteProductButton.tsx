@@ -12,7 +12,7 @@ export const DeleteProductButton: FC<IProps> = ({ id }) => {
       disabled={isLoading}
       onClick={() => deleteProduct({ id })}
     >
-      удалить товар
+      удалить
     </button>
   );
 };
