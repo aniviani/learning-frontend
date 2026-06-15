@@ -7,8 +7,6 @@ interface IProps {
 
 export const DeleteProductButton: FC<IProps> = ({ id }) => {
   const { isLoading, deleteProduct } = useDeleteProductMutation();
-
-  const a = 11;
   return (
     <button
       disabled={isLoading}
